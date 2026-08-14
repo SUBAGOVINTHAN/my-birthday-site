@@ -19,14 +19,16 @@ export default function WelcomeScreen() {
     if (opening) return;
     startAudio();
     setOpening(true);
-
     setTimeout(() => {
       navigate("/quest/gift");
     }, 850);
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center px-6">
+    <div
+      className="relative w-full overflow-hidden flex flex-col items-center justify-center text-center px-6"
+      style={{ minHeight: "100dvh" }}
+    >
       <style>{`
         @keyframes bow-split-left {
           0% { transform: translateX(0) rotate(0deg); opacity: 1; }
@@ -48,56 +50,47 @@ export default function WelcomeScreen() {
           0% { opacity: 0; transform: translateY(8px); }
           100% { opacity: 1; transform: translateY(0); }
         }
-        .bow-half-left.opening {
-          animation: bow-split-left 0.85s ease-in forwards;
-        }
-        .bow-half-right.opening {
-          animation: bow-split-right 0.85s ease-in forwards;
-        }
-        .bow-enter {
-          animation: bow-enter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        .bow-idle {
-          animation: bow-idle-pulse 2.6s ease-in-out infinite;
-        }
-        .hint-enter {
-          animation: hint-fade 0.7s ease-out 0.6s forwards;
-          opacity: 0;
-        }
+        .bow-half-left.opening { animation: bow-split-left 0.85s ease-in forwards; }
+        .bow-half-right.opening { animation: bow-split-right 0.85s ease-in forwards; }
+        .bow-enter { animation: bow-enter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .bow-idle { animation: bow-idle-pulse 2.6s ease-in-out infinite; }
+        .hint-enter { animation: hint-fade 0.7s ease-out 0.6s forwards; opacity: 0; }
       `}</style>
 
-      {/* left half of the bow */}
-      <div
-        onClick={handleStart}
-        className={`bow-half-left fixed inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
-        style={{
-          clipPath: "inset(0 50% 0 0)",
-          backgroundImage: `url(${bowImg})`,
-          backgroundSize: "100vw auto",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: mounted ? undefined : 0,
-        }}
-      />
-      {/* right half of the bow */}
-      <div
-        onClick={handleStart}
-        className={`bow-half-right fixed inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
-        style={{
-          clipPath: "inset(0 0 0 50%)",
-          backgroundImage: `url(${bowImg})`,
-          backgroundSize: "100vw auto",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: mounted ? undefined : 0,
-        }}
-      />
-
-      {/* page bg behind the bow */}
+      {/* page bg */}
       <div className="fixed inset-0 -z-10" style={{ background: COLORS.cream }} />
 
+      {/* bow — a real, sized element in normal flow, not a full-viewport background */}
       <div
-        className="relative z-10 mt-[38vh] px-8 py-3 mb-6 pointer-events-none transition-opacity duration-300 hint-enter"
+        onClick={handleStart}
+        className="relative cursor-pointer w-64 h-64 sm:w-80 sm:h-80"
+      >
+        <div
+          className={`bow-half-left absolute inset-0 ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
+          style={{
+            clipPath: "inset(0 50% 0 0)",
+            backgroundImage: `url(${bowImg})`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            opacity: mounted ? undefined : 0,
+          }}
+        />
+        <div
+          className={`bow-half-right absolute inset-0 ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
+          style={{
+            clipPath: "inset(0 0 0 50%)",
+            backgroundImage: `url(${bowImg})`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            opacity: mounted ? undefined : 0,
+          }}
+        />
+      </div>
+
+      <div
+        className="relative z-10 mt-8 px-8 py-3 pointer-events-none transition-opacity duration-300 hint-enter"
         style={{
           background: COLORS.rust,
           color: COLORS.cream,
@@ -112,7 +105,7 @@ export default function WelcomeScreen() {
       </div>
 
       <p
-        className="relative z-10 text-sm sm:text-base pointer-events-none transition-opacity duration-300 hint-enter"
+        className="relative z-10 mt-4 text-sm sm:text-base pointer-events-none transition-opacity duration-300 hint-enter"
         style={{ color: COLORS.brown, opacity: opening ? 0 : undefined }}
       >
         tap the bow to begin the journey ✨
