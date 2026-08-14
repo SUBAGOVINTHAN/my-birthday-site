@@ -3,38 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { COLORS } from "../constants";
 import { useAudio } from "../context/AudioContext";
 import bowImg from "../../../assets/bow2.png";
-import FloatingParticles from "../shared/FloatingParticles";
-
-function CornerFrame({ corner }) {
-  const pos = {
-    topLeft: { top: "18px", left: "18px" },
-    topRight: { top: "18px", right: "18px" },
-    bottomLeft: { bottom: "18px", left: "18px" },
-    bottomRight: { bottom: "18px", right: "18px" },
-  };
-  const flip = {
-    topLeft: "scaleX(1) scaleY(1)",
-    topRight: "scaleX(-1) scaleY(1)",
-    bottomLeft: "scaleX(1) scaleY(-1)",
-    bottomRight: "scaleX(-1) scaleY(-1)",
-  };
-  return (
-    <svg
-      viewBox="0 0 90 90"
-      className="fixed z-[1] pointer-events-none opacity-70 w-14 h-14 sm:w-24 sm:h-24"
-      style={{ ...pos[corner], transform: flip[corner] }}
-    >
-      <path d="M2 46 L2 2 L46 2" fill="none" stroke={COLORS.rust} strokeWidth="1.2" />
-      <path d="M9 30 L9 9 L30 9" fill="none" stroke={COLORS.rust} strokeWidth="1" opacity="0.75" />
-      <path
-        d="M2 2 C 16 4, 26 4, 32 14 C 36 21, 33 27, 27 25 C 23 23.5, 24 19, 28 19"
-        fill="none" stroke={COLORS.gold} strokeWidth="1.3" strokeLinecap="round"
-      />
-      <path d="M18 8 C 21 5, 25 6, 24 10 C 23 13, 19 12, 18 8 Z" fill={COLORS.gold} opacity="0.65" />
-      <circle cx="2" cy="2" r="1.8" fill={COLORS.rust} />
-    </svg>
-  );
-}
 
 export default function WelcomeScreen() {
   const navigate = useNavigate();
@@ -51,16 +19,14 @@ export default function WelcomeScreen() {
     if (opening) return;
     startAudio();
     setOpening(true);
+
     setTimeout(() => {
       navigate("/quest/gift");
     }, 850);
   };
 
   return (
-    <div
-      className="relative w-full overflow-hidden flex flex-col items-center justify-center text-center px-6"
-      style={{ minHeight: "100dvh" }}
-    >
+    <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center px-6">
       <style>{`
         @keyframes bow-split-left {
           0% { transform: translateX(0) rotate(0deg); opacity: 1; }
@@ -82,65 +48,56 @@ export default function WelcomeScreen() {
           0% { opacity: 0; transform: translateY(8px); }
           100% { opacity: 1; transform: translateY(0); }
         }
-        .bow-half-left.opening { animation: bow-split-left 0.85s ease-in forwards; }
-        .bow-half-right.opening { animation: bow-split-right 0.85s ease-in forwards; }
-        .bow-enter { animation: bow-enter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .bow-idle { animation: bow-idle-pulse 2.6s ease-in-out infinite; }
-        .hint-enter { animation: hint-fade 0.7s ease-out 0.6s forwards; opacity: 0; }
+        .bow-half-left.opening {
+          animation: bow-split-left 0.85s ease-in forwards;
+        }
+        .bow-half-right.opening {
+          animation: bow-split-right 0.85s ease-in forwards;
+        }
+        .bow-enter {
+          animation: bow-enter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .bow-idle {
+          animation: bow-idle-pulse 2.6s ease-in-out infinite;
+        }
+        .hint-enter {
+          animation: hint-fade 0.7s ease-out 0.6s forwards;
+          opacity: 0;
+        }
       `}</style>
 
-      {/* same warm backdrop as GiftScreen, for visual continuity */}
-      <div
-        className="fixed inset-0 -z-20 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle at 20% 15%, rgba(203,161,53,0.32), transparent 55%)," +
-            "radial-gradient(circle at 85% 20%, rgba(168,69,58,0.28), transparent 55%)," +
-            "radial-gradient(circle at 15% 85%, rgba(168,69,58,0.24), transparent 55%)," +
-            "radial-gradient(circle at 85% 85%, rgba(138,154,122,0.26), transparent 55%)," +
-            "radial-gradient(circle at 50% 50%, rgba(203,161,53,0.14), transparent 65%)",
-        }}
-      />
-      <div className="fixed inset-0 -z-10" style={{ background: COLORS.cream }} />
-      <FloatingParticles />
-
-      <CornerFrame corner="topLeft" />
-      <CornerFrame corner="topRight" />
-      <CornerFrame corner="bottomLeft" />
-      <CornerFrame corner="bottomRight" />
-
-      {/* bow — bigger, real presence, sized relative to viewport not a fixed px value */}
+      {/* left half of the bow */}
       <div
         onClick={handleStart}
-        className="relative cursor-pointer"
-        style={{ width: "min(78vw, 340px)", height: "min(78vw, 340px)" }}
-      >
-        <div
-          className={`bow-half-left absolute inset-0 ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
-          style={{
-            clipPath: "inset(0 50% 0 0)",
-            backgroundImage: `url(${bowImg})`,
-            backgroundSize: "contain",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            opacity: mounted ? undefined : 0,
-          }}
-        />
-        <div
-          className={`bow-half-right absolute inset-0 ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
-          style={{
-            clipPath: "inset(0 0 0 50%)",
-            backgroundImage: `url(${bowImg})`,
-            backgroundSize: "contain",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            opacity: mounted ? undefined : 0,
-          }}
-        />
-      </div>
+        className={`bow-half-left fixed inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
+        style={{
+          clipPath: "inset(0 50% 0 0)",
+          backgroundImage: `url(${bowImg})`,
+          backgroundSize: "100vw auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: mounted ? undefined : 0,
+        }}
+      />
+      {/* right half of the bow */}
+      <div
+        onClick={handleStart}
+        className={`bow-half-right fixed inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
+        style={{
+          clipPath: "inset(0 0 0 50%)",
+          backgroundImage: `url(${bowImg})`,
+          backgroundSize: "100vw auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: mounted ? undefined : 0,
+        }}
+      />
+
+      {/* page bg behind the bow */}
+      <div className="fixed inset-0 -z-10" style={{ background: COLORS.cream }} />
 
       <div
-        className="relative z-10 mt-8 px-8 py-3 pointer-events-none transition-opacity duration-300 hint-enter"
+        className="relative z-10 mt-[38vh] px-8 py-3 mb-6 pointer-events-none transition-opacity duration-300 hint-enter"
         style={{
           background: COLORS.rust,
           color: COLORS.cream,
@@ -155,7 +112,7 @@ export default function WelcomeScreen() {
       </div>
 
       <p
-        className="relative z-10 mt-4 text-sm sm:text-base pointer-events-none transition-opacity duration-300 hint-enter"
+        className="relative z-10 text-sm sm:text-base pointer-events-none transition-opacity duration-300 hint-enter"
         style={{ color: COLORS.brown, opacity: opening ? 0 : undefined }}
       >
         tap the bow to begin the journey ✨
