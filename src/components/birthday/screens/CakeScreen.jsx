@@ -102,7 +102,7 @@ function ConfettiBurst({ active }) {
 
 
 // -----------------------------
-// Vintage countdown box — smaller on mobile
+// Vintage countdown box — smaller on mobile, bigger digits now
 // -----------------------------
 function CountdownBox({ label, value, rotate }) {
   return (
@@ -113,7 +113,7 @@ function CountdownBox({ label, value, rotate }) {
       }}
     >
       <div
-        className="relative px-2.5 py-2 sm:px-4 sm:py-3 min-w-[48px] sm:min-w-[72px] text-center"
+        className="relative px-3.5 py-2.5 sm:px-5 sm:py-4 min-w-[54px] sm:min-w-[80px] text-center"
         style={{
           background: `
             linear-gradient(
@@ -136,7 +136,7 @@ function CountdownBox({ label, value, rotate }) {
         />
 
         <b
-          className="block text-base sm:text-2xl"
+          className="block text-xl sm:text-3xl"
           style={{
             fontFamily: "'Playfair Display', serif",
             color: COLORS.rust,
@@ -146,7 +146,7 @@ function CountdownBox({ label, value, rotate }) {
         </b>
 
         <small
-          className="text-[0.45rem] sm:text-[0.52rem] tracking-[1.5px] sm:tracking-[2px] uppercase"
+          className="text-[0.6rem] sm:text-[0.7rem] tracking-[1.5px] sm:tracking-[2px] uppercase"
           style={{
             color: COLORS.brownSoft,
             fontFamily: "'Playfair Display', serif",
@@ -513,7 +513,7 @@ function MemoryCard({ image, caption }) {
             <>
               <span className="text-3xl opacity-70">📸</span>
               <span
-                className="mt-3 px-4 text-xs sm:text-sm italic leading-relaxed"
+                className="mt-3 px-4 text-sm sm:text-base italic leading-relaxed"
                 style={{ fontFamily: "'Playfair Display', serif", color: COLORS.brownSoft }}
               >
                 {caption}
@@ -524,7 +524,7 @@ function MemoryCard({ image, caption }) {
 
         {image && caption && (
           <div
-            className="mt-1.5 sm:mt-2 px-2 text-center italic text-[0.7rem] sm:text-xs leading-snug"
+            className="mt-1.5 sm:mt-2 px-2 text-center italic text-sm sm:text-base leading-snug"
             style={{ fontFamily: "'Playfair Display', serif", color: COLORS.brownSoft }}
           >
             {caption}
@@ -533,7 +533,7 @@ function MemoryCard({ image, caption }) {
 
         <div
           className="mt-1.5 sm:mt-2 text-center"
-          style={{ fontFamily: "'Alex Brush', cursive", color: COLORS.rust, fontSize: "1rem" }}
+          style={{ fontFamily: "'Alex Brush', cursive", color: COLORS.rust, fontSize: "1.25rem" }}
         >
           a memory to keep ♡
         </div>
@@ -570,7 +570,7 @@ function ParachuteHint({ text }) {
     <div className="relative inline-flex items-center justify-center">
       <span
         ref={msgRef}
-        className="message-pop italic text-xs sm:text-sm px-3 py-1 whitespace-nowrap"
+        className="message-pop italic text-sm sm:text-base px-4 py-1.5 whitespace-nowrap"
         style={{
           color: COLORS.brownSoft,
           background: COLORS.cream,
@@ -679,7 +679,7 @@ function SideNote({ text, posClass, rotate = -4 }) {
         />
         <div
           className="text-center italic leading-snug"
-          style={{ fontFamily: "'Playfair Display', serif", color: COLORS.rust, fontSize: "0.85rem" }}
+          style={{ fontFamily: "'Playfair Display', serif", color: COLORS.rust, fontSize: "0.95rem" }}
         >
           {text}
         </div>
@@ -790,7 +790,7 @@ export default function CakeScreen() {
 
 
       {/* top vintage divider */}
-      <div className="flex items-center gap-3 mb-1" style={{ color: COLORS.gold, opacity: 0.8, fontSize: "12px" }}>
+      <div className="flex items-center gap-3 mb-1" style={{ color: COLORS.gold, opacity: 0.8, fontSize: "14px" }}>
         <span>✦</span>
         <span>❦</span>
         <span>✦</span>
@@ -798,35 +798,35 @@ export default function CakeScreen() {
 
 
       <Tag>
-        <span style={{ letterSpacing: "3px" }}>make a wish</span>
+        <span style={{ letterSpacing: "3px", fontSize: "1rem" }}>make a wish</span>
       </Tag>
 
-      {/* 24th birthday — compact + always visible on mobile */}
+      {/* 24th birthday — compact + always visible on mobile, bigger + bolder */}
       <div className="mt-1 sm:mt-3 text-center px-3 birthday-mention">
         <div
           style={{
             fontFamily: "'Alex Brush', cursive",
             color: COLORS.rust,
-            fontSize: "clamp(1.15rem, 4.8vw, 1.6rem)",
+            fontSize: "clamp(1.5rem, 7vw, 2.4rem)",
             lineHeight: 1.15,
           }}
         >
           celebrating your 24th birthday
         </div>
         <div
-          className="mt-0.5"
+          className="mt-1"
           style={{
             fontFamily: "'Playfair Display', serif",
             color: COLORS.brownSoft,
-            fontSize: "clamp(0.7rem, 3vw, 0.85rem)",
+            fontSize: "clamp(0.95rem, 4vw, 1.2rem)",
             fontStyle: "italic",
           }}
         >
           Happy Birthday Ammu ♡
         </div>
         <div
-          className="mt-1 text-[0.55rem] sm:text-xs uppercase"
-          style={{ color: COLORS.gold, letterSpacing: "2.5px" }}
+          className="mt-1 text-xs sm:text-sm uppercase"
+          style={{ color: COLORS.gold, letterSpacing: "3px" }}
         >
           September 10
         </div>
@@ -834,14 +834,14 @@ export default function CakeScreen() {
 
       {/* hint / result line — sits ABOVE the cake so the parachute lands there */}
       {!showMemories && !plated && (
-        <div className="mt-1 text-center min-h-[1.2rem]" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <div className="mt-1 text-center min-h-[1.4rem]" style={{ fontFamily: "'Playfair Display', serif" }}>
           {cutting ? (
-            <span className="italic text-sm" style={{ color: COLORS.rust }}>
+            <span className="italic text-base sm:text-lg" style={{ color: COLORS.rust }}>
               slicing your cake ♡
             </span>
           ) : blown ? (
             <span
-              className="italic text-sm"
+              className="italic text-base sm:text-lg"
               style={{ color: COLORS.rust, animation: "wishPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both" }}
             >
               wish made ♡ may it all come true
@@ -865,7 +865,7 @@ export default function CakeScreen() {
 
       {plated && !showMemories && (
         <div
-          className="mt-1 text-center italic text-sm slice-in"
+          className="mt-1 text-center italic text-base sm:text-lg slice-in"
           style={{ fontFamily: "'Playfair Display', serif", color: COLORS.rust }}
         >
           plated with love ♡ first slice is yours
@@ -876,7 +876,7 @@ export default function CakeScreen() {
       {/* countdown — only before memories; smaller on mobile */}
       {!showMemories && (
         cd ? (
-          <div className="flex gap-1 sm:gap-2.5 justify-center mt-1 flex-wrap px-2">
+          <div className="flex gap-1.5 sm:gap-3 justify-center mt-1 flex-wrap px-2">
             <CountdownBox label="days" value={cd.d} rotate={-2} />
             <CountdownBox label="hrs" value={cd.h} rotate={1} />
             <CountdownBox label="min" value={cd.m} rotate={-1} />
@@ -884,7 +884,7 @@ export default function CakeScreen() {
           </div>
         ) : (
           <div
-            className="mt-2 text-xl sm:text-2xl"
+            className="mt-2 text-2xl sm:text-3xl"
             style={{ fontFamily: "'Alex Brush', cursive", color: COLORS.rust }}
           >
             it's finally your day 🎂
@@ -899,15 +899,15 @@ export default function CakeScreen() {
           type="button"
           onClick={onCut}
           disabled={cutting}
-          className="vintage-memory-btn mt-4 sm:mt-6 px-7 py-3"
+          className="vintage-memory-btn mt-4 sm:mt-6 px-8 py-3.5"
           style={{
             color: COLORS.cream,
             background: COLORS.rust,
             border: `1px solid ${COLORS.rust}`,
             boxShadow: "0 8px 18px rgba(94,70,50,0.22)",
             fontFamily: "'Playfair Display', serif",
-            fontSize: "0.8rem",
-            letterSpacing: "2px",
+            fontSize: "0.95rem",
+            letterSpacing: "2.5px",
             opacity: cutting ? 0.7 : 1,
             cursor: cutting ? "default" : "pointer",
           }}
@@ -921,15 +921,15 @@ export default function CakeScreen() {
         <button
           type="button"
           onClick={() => setShowMemories(true)}
-          className="vintage-memory-btn mt-4 sm:mt-6 px-7 py-3"
+          className="vintage-memory-btn mt-4 sm:mt-6 px-8 py-3.5"
           style={{
             color: COLORS.cream,
             background: COLORS.rust,
             border: `1px solid ${COLORS.rust}`,
             boxShadow: "0 8px 18px rgba(94,70,50,0.22)",
             fontFamily: "'Playfair Display', serif",
-            fontSize: "0.8rem",
-            letterSpacing: "2px",
+            fontSize: "0.95rem",
+            letterSpacing: "2.5px",
           }}
         >
           ❦ &nbsp; see our memories &nbsp; ❦
@@ -945,7 +945,7 @@ export default function CakeScreen() {
             style={{
               fontFamily: "'Alex Brush', cursive",
               color: COLORS.rust,
-              fontSize: "clamp(1.15rem, 5vw, 1.5rem)",
+              fontSize: "clamp(1.4rem, 6vw, 1.9rem)",
             }}
           >
             little moments, forever ♡
@@ -984,7 +984,7 @@ export default function CakeScreen() {
 
       {/* bottom ornamental divider — hide when memories open to save space */}
       {!showMemories && (
-        <div className="flex items-center gap-3 mt-7" style={{ color: COLORS.gold, opacity: 0.65, fontSize: "11px" }}>
+        <div className="flex items-center gap-3 mt-7" style={{ color: COLORS.gold, opacity: 0.65, fontSize: "13px" }}>
           <span>—</span>
           <span>❦</span>
           <span>—</span>
