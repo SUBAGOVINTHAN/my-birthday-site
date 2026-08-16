@@ -66,38 +66,42 @@ export default function WelcomeScreen() {
         }
       `}</style>
 
-      {/* left half of the bow */}
-      <div
-        onClick={handleStart}
-        className={`bow-half-left fixed inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
-        style={{
-          clipPath: "inset(0 50% 0 0)",
-          backgroundImage: `url(${bowImg})`,
-          backgroundSize: "100vw auto",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: mounted ? undefined : 0,
-        }}
-      />
-      {/* right half of the bow */}
-      <div
-        onClick={handleStart}
-        className={`bow-half-right fixed inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
-        style={{
-          clipPath: "inset(0 0 0 50%)",
-          backgroundImage: `url(${bowImg})`,
-          backgroundSize: "100vw auto",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: mounted ? undefined : 0,
-        }}
-      />
-
-      {/* page bg behind the bow */}
+      {/* page bg */}
       <div className="fixed inset-0 -z-10" style={{ background: COLORS.cream }} />
 
+      {/* centered bow container */}
+      <div className="relative w-full max-w-[420px] aspect-[2.4/1] mb-8">
+        {/* left half */}
+        <div
+          onClick={handleStart}
+          className={`bow-half-left absolute inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
+          style={{
+            clipPath: "inset(0 50% 0 0)",
+            backgroundImage: `url(${bowImg})`,
+            backgroundSize: "100% auto",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            opacity: mounted ? undefined : 0,
+          }}
+        />
+        {/* right half */}
+        <div
+          onClick={handleStart}
+          className={`bow-half-right absolute inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
+          style={{
+            clipPath: "inset(0 0 0 50%)",
+            backgroundImage: `url(${bowImg})`,
+            backgroundSize: "100% auto",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            opacity: mounted ? undefined : 0,
+          }}
+        />
+      </div>
+
+      {/* title */}
       <div
-        className="relative z-10 mt-[38vh] px-8 py-3 mb-6 pointer-events-none transition-opacity duration-300 hint-enter"
+        className="relative z-10 px-8 py-3 mb-5 pointer-events-none transition-opacity duration-300 hint-enter"
         style={{
           background: COLORS.rust,
           color: COLORS.cream,
@@ -106,11 +110,15 @@ export default function WelcomeScreen() {
           opacity: opening ? 0 : undefined,
         }}
       >
-        <span className="italic text-lg tracking-wide" style={{ fontFamily: "'Playfair Display', serif" }}>
+        <span
+          className="italic text-lg tracking-wide"
+          style={{ fontFamily: "'Playfair Display', serif" }}
+        >
           A Birthday Surprise
         </span>
       </div>
 
+      {/* hint */}
       <p
         className="relative z-10 text-sm sm:text-base pointer-events-none transition-opacity duration-300 hint-enter"
         style={{ color: COLORS.brown, opacity: opening ? 0 : undefined }}
