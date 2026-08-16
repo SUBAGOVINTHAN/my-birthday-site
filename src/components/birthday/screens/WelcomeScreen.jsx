@@ -26,7 +26,7 @@ export default function WelcomeScreen() {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center px-4">
+    <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center px-6">
       <style>{`
         @keyframes bow-split-left {
           0% { transform: translateX(0) rotate(0deg); opacity: 1; }
@@ -66,45 +66,38 @@ export default function WelcomeScreen() {
         }
       `}</style>
 
-      {/* cream background */}
+      {/* left half of the bow */}
+      <div
+        onClick={handleStart}
+        className={`bow-half-left fixed inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
+        style={{
+          clipPath: "inset(0 50% 0 0)",
+          backgroundImage: `url(${bowImg})`,
+          backgroundSize: "100vw auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: mounted ? undefined : 0,
+        }}
+      />
+      {/* right half of the bow */}
+      <div
+        onClick={handleStart}
+        className={`bow-half-right fixed inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
+        style={{
+          clipPath: "inset(0 0 0 50%)",
+          backgroundImage: `url(${bowImg})`,
+          backgroundSize: "100vw auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity: mounted ? undefined : 0,
+        }}
+      />
+
+      {/* page bg behind the bow */}
       <div className="fixed inset-0 -z-10" style={{ background: COLORS.cream }} />
 
-      {/* ===== FULL WIDTH BOW ===== */}
-      <div 
-        className="relative w-screen"
-        style={{ height: "42vw", minHeight: "160px", maxHeight: "220px" }}
-      >
-        {/* left half */}
-        <div
-          onClick={handleStart}
-          className={`bow-half-left absolute inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
-          style={{
-            clipPath: "inset(0 50% 0 0)",
-            backgroundImage: `url(${bowImg})`,
-            backgroundSize: "100vw auto",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            opacity: mounted ? undefined : 0,
-          }}
-        />
-        {/* right half */}
-        <div
-          onClick={handleStart}
-          className={`bow-half-right absolute inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
-          style={{
-            clipPath: "inset(0 0 0 50%)",
-            backgroundImage: `url(${bowImg})`,
-            backgroundSize: "100vw auto",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            opacity: mounted ? undefined : 0,
-          }}
-        />
-      </div>
-
-      {/* title - with proper gap */}
       <div
-        className="relative z-10 px-8 py-3 mt-8 mb-5 pointer-events-none transition-opacity duration-300 hint-enter"
+        className="relative z-10 mt-[38vh] px-8 py-3 mb-6 pointer-events-none transition-opacity duration-300 hint-enter"
         style={{
           background: COLORS.rust,
           color: COLORS.cream,
@@ -113,15 +106,11 @@ export default function WelcomeScreen() {
           opacity: opening ? 0 : undefined,
         }}
       >
-        <span
-          className="italic text-lg tracking-wide"
-          style={{ fontFamily: "'Playfair Display', serif" }}
-        >
+        <span className="italic text-lg tracking-wide" style={{ fontFamily: "'Playfair Display', serif" }}>
           A Birthday Surprise
         </span>
       </div>
 
-      {/* hint */}
       <p
         className="relative z-10 text-sm sm:text-base pointer-events-none transition-opacity duration-300 hint-enter"
         style={{ color: COLORS.brown, opacity: opening ? 0 : undefined }}
