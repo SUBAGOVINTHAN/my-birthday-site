@@ -26,7 +26,10 @@ export default function WelcomeScreen() {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center px-6">
+    <div
+      className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center px-6"
+      style={{ background: COLORS.cream }}
+    >
       <style>{`
         @keyframes bow-split-left {
           0% { transform: translateX(0) rotate(0deg); opacity: 1; }
@@ -66,38 +69,39 @@ export default function WelcomeScreen() {
         }
       `}</style>
 
-      {/* left half of the bow */}
+      {/* bow wrapper — now in normal flex flow, sized relative to viewport width */}
       <div
         onClick={handleStart}
-        className={`bow-half-left fixed inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
-        style={{
-          clipPath: "inset(0 50% 0 0)",
-          backgroundImage: `url(${bowImg})`,
-          backgroundSize: "100vw auto",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: mounted ? undefined : 0,
-        }}
-      />
-      {/* right half of the bow */}
-      <div
-        onClick={handleStart}
-        className={`bow-half-right fixed inset-0 cursor-pointer ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
-        style={{
-          clipPath: "inset(0 0 0 50%)",
-          backgroundImage: `url(${bowImg})`,
-          backgroundSize: "100vw auto",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity: mounted ? undefined : 0,
-        }}
-      />
+        className="relative w-[70vw] max-w-[320px] aspect-[3/2] cursor-pointer"
+      >
+        {/* left half of the bow */}
+        <div
+          className={`bow-half-left absolute inset-0 ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
+          style={{
+            clipPath: "inset(0 50% 0 0)",
+            backgroundImage: `url(${bowImg})`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            opacity: mounted ? undefined : 0,
+          }}
+        />
+        {/* right half of the bow */}
+        <div
+          className={`bow-half-right absolute inset-0 ${mounted ? "bow-enter" : ""} ${!opening && mounted ? "bow-idle" : ""} ${opening ? "opening" : ""}`}
+          style={{
+            clipPath: "inset(0 0 0 50%)",
+            backgroundImage: `url(${bowImg})`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            opacity: mounted ? undefined : 0,
+          }}
+        />
+      </div>
 
-      {/* page bg behind the bow */}
-      <div className="fixed inset-0 -z-10" style={{ background: COLORS.cream }} />
-
       <div
-        className="relative z-10 mt-[38vh] px-8 py-3 mb-6 pointer-events-none transition-opacity duration-300 hint-enter"
+        className="relative z-10 mt-6 px-8 py-3 pointer-events-none transition-opacity duration-300 hint-enter"
         style={{
           background: COLORS.rust,
           color: COLORS.cream,
@@ -112,7 +116,7 @@ export default function WelcomeScreen() {
       </div>
 
       <p
-        className="relative z-10 text-sm sm:text-base pointer-events-none transition-opacity duration-300 hint-enter"
+        className="relative z-10 mt-3 text-sm sm:text-base pointer-events-none transition-opacity duration-300 hint-enter"
         style={{ color: COLORS.brown, opacity: opening ? 0 : undefined }}
       >
         tap the bow to begin the journey ✨
