@@ -26,7 +26,7 @@ export default function WelcomeScreen() {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center px-6">
+    <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center text-center px-4">
       <style>{`
         @keyframes bow-split-left {
           0% { transform: translateX(0) rotate(0deg); opacity: 1; }
@@ -66,11 +66,11 @@ export default function WelcomeScreen() {
         }
       `}</style>
 
-      {/* page bg */}
+      {/* cream background */}
       <div className="fixed inset-0 -z-10" style={{ background: COLORS.cream }} />
 
-      {/* centered bow container */}
-      <div className="relative w-full max-w-[420px] aspect-[2.4/1] mb-8">
+      {/* ===== FULL-WIDTH BOW ===== */}
+      <div className="relative w-screen mb-10">
         {/* left half */}
         <div
           onClick={handleStart}
@@ -78,9 +78,12 @@ export default function WelcomeScreen() {
           style={{
             clipPath: "inset(0 50% 0 0)",
             backgroundImage: `url(${bowImg})`,
-            backgroundSize: "100% auto",
+            backgroundSize: "100vw auto",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            height: "28vw",          // keeps proportions nice on mobile
+            minHeight: "110px",
+            maxHeight: "180px",
             opacity: mounted ? undefined : 0,
           }}
         />
@@ -91,9 +94,12 @@ export default function WelcomeScreen() {
           style={{
             clipPath: "inset(0 0 0 50%)",
             backgroundImage: `url(${bowImg})`,
-            backgroundSize: "100% auto",
+            backgroundSize: "100vw auto",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            height: "28vw",
+            minHeight: "110px",
+            maxHeight: "180px",
             opacity: mounted ? undefined : 0,
           }}
         />
