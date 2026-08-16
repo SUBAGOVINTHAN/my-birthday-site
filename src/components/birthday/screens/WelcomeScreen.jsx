@@ -69,8 +69,11 @@ export default function WelcomeScreen() {
       {/* cream background */}
       <div className="fixed inset-0 -z-10" style={{ background: COLORS.cream }} />
 
-      {/* ===== FULL-WIDTH BOW ===== */}
-      <div className="relative w-screen mb-10">
+      {/* ===== FULL WIDTH BOW ===== */}
+      <div 
+        className="relative w-screen"
+        style={{ height: "42vw", minHeight: "160px", maxHeight: "220px" }}
+      >
         {/* left half */}
         <div
           onClick={handleStart}
@@ -81,9 +84,6 @@ export default function WelcomeScreen() {
             backgroundSize: "100vw auto",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            height: "28vw",          // keeps proportions nice on mobile
-            minHeight: "110px",
-            maxHeight: "180px",
             opacity: mounted ? undefined : 0,
           }}
         />
@@ -97,17 +97,14 @@ export default function WelcomeScreen() {
             backgroundSize: "100vw auto",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            height: "28vw",
-            minHeight: "110px",
-            maxHeight: "180px",
             opacity: mounted ? undefined : 0,
           }}
         />
       </div>
 
-      {/* title */}
+      {/* title - with proper gap */}
       <div
-        className="relative z-10 px-8 py-3 mb-5 pointer-events-none transition-opacity duration-300 hint-enter"
+        className="relative z-10 px-8 py-3 mt-8 mb-5 pointer-events-none transition-opacity duration-300 hint-enter"
         style={{
           background: COLORS.rust,
           color: COLORS.cream,
