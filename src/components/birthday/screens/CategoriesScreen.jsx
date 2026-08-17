@@ -456,7 +456,7 @@ export default function CategoriesScreen() {
                             overflow: "hidden",
                           }}
                         >
-                          {item.title}
+                          
                         </p>
                         {item.year && (
                           <p className="text-[10px]" style={{ color: COLORS.brownSoft }}>
