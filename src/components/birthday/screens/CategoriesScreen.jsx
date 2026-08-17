@@ -595,7 +595,7 @@ export default function CategoriesScreen() {
                 />
               )}
               <p className="text-white/90 text-xs sm:text-sm mt-2.5 sm:mt-3 text-center px-4">
-                {lightbox.title}
+                
                 {lightbox.year && (
                   <span className="text-white/60"> · {lightbox.year}</span>
                 )}
