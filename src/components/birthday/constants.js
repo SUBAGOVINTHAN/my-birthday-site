@@ -54,19 +54,67 @@ export const BALLOON_COLORS = [
 
 export const PUZZLE_EMOJIS = ["🎂", "🎁", "💌", "🌸", "✨", "🎈"];
 
-export const LETTER_TEXT = `My dearest Khalifa,
+export const LETTER_TEXT = `Happy Birthday Papu,
 
-I wanted this last page to feel like I was writing it in front of you,
-one word at a time — because that's how I want you to read it. Slowly.
+Happy Birthday to my love!
 
-[Write your birthday message here. Talk about what he means to you,
-what you're grateful for, an inside joke, anything you want him to
-carry with him this year.]
+On your special day, I just want to wish you a life full of happiness, success, peace, and everything your heart wishes for. I hope every dream you have comes true, and I hope I get to be beside you through all of it.
 
-Here's to another year of us.
+You deserve all the happiness in this world, papu. ❤️ And no matter where life takes us, I always want to see you happy, smiling, and achieving everything you dream of.
 
-Yours always,
-[your name] ♡`;
+I still remember the very first time I noticed you. It wasn't your face that caught my attention first…it was your voice 😂
+
+You were comparing in our college auditorium. When I heard your voice, I thought, “Cha… not bad, our college boys are actually comparing like this!” 😂 At that time, I never imagined that the same voice would one day become so special to me.
+
+Then, another day in the auditorium, I was sitting next to Afrose. She told me to say Hi to you. Before I could even think about what to do, you suddenly said Hi And I immediately looked down. 😂❤️
+
+And that's how our story started.
+
+That same evening, you sent me an Instagram request. And then came our very first message… you said,Hope you don't block me 😂 and i replied, I also hope u r a good person.
+
+Who would have thought that such a small conversation would eventually become such a beautiful part of our lives? ❤️
+
+Little by little, we started talking… laughing… teasing each other… fighting… and somewhere between all those little moments, you became one of the most important people in my life.
+
+Sometimes I still wonder how someone who was once just a voice in our college auditorium became my favourite person, my comfort, my happiness, and also my biggest headache at the same time. 😂❤️
+
+The distance between us is much shorter than the distance between me and the moon. Yet, I can see the moon… but somehow, I still can't see you.🥺❤️
+
+No matter how crazy I behave sometimes, you always know how to control me. 😂❤️
+
+These two years haven't always been easy. We've had so many fights, misunderstandings, anger, tears, and difficult moments. But after everything, *our love is still continuing.* ❤️
+
+And that's what makes it so special to me.
+
+Our relationship isn't perfect, and neither are we. But somehow, when we're together, everything feels right.
+
+No matter how many fights we have or how angry we get, somehow we always find our way back to each other. And I think that's the most beautiful thing about our love. ❤️
+
+I want this love to continue *until my last breath.* No matter what problems come our way, no matter how difficult life gets, I want us to end up together.
+
+I want to create so many more memories with you. I want to travel with you, laugh with you, fight with you, annoy you, make you smile, and spend so many more beautiful moments together. 😂❤️
+
+And finally…
+
+*Please come and take me with you soon.* 🥺❤️
+I've been waiting for you for so long.
+
+I don't just want you on my birthdays or on special days. I want you every year, every phase of my life, until my last breath.❤️
+
+Once again, *Happy Birthday, my love.* 🎂❤️
+
+Thank you for coming into my life.
+Thank you for staying.
+And most importantly…
+
+*Thank you for being you.* 🫶🏻
+
+I may not always know how to express everything I feel, but one thing will always remain the same…
+
+*I love you more than words can ever explain. ❤️*
+
+With love,
+[suba] ♡`;
 
 // Each memory now points at a real photo in /public/images/.
 // `image` is the path served from the public folder — keep the
