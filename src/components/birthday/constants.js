@@ -109,8 +109,6 @@ And most importantly…
 
 *Thank you for being you.* 🫶🏻
 
-I may not always know how to express everything I feel, but one thing will always remain the same…
-
 *I love you more than words can ever explain. ❤️*
 
 With love,
