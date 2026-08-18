@@ -9,6 +9,7 @@ const DIP_BOB_MS = 450;
 export default function LetterScreen() {
   const [typed, setTyped] = useState("");
   const [done, setDone] = useState(false);
+  const [celebrated, setCelebrated] = useState(false);
   // dip: null while writing normally, otherwise { phase, start, end }
   const [dip, setDip] = useState(null);
 
@@ -134,6 +135,11 @@ export default function LetterScreen() {
     };
   })();
 
+  const onFinish = () => {
+    window.questBurst && window.questBurst();
+    setTimeout(() => setCelebrated(true), 600); // let confetti play a beat first
+  };
+
   return (
     <div className="max-w-md sm:max-w-lg mx-auto w-full">
       {/* <Tag>the last page</Tag>
@@ -222,15 +228,43 @@ export default function LetterScreen() {
         )}
       </div>
 
-      {done && (
+      {done && !celebrated && (
         <div className="flex justify-center">
-          <Btn onClick={() => window.questBurst && window.questBurst()} className="mt-6 text-sm px-4 py-1.5 scale-90">
+          <Btn onClick={onFinish} className="mt-6 text-sm px-4 py-1.5 scale-90">
             happy birthday 🎉
           </Btn>
         </div>
       )}
 
+      {celebrated && (
+        <div
+          className="mt-6 text-center px-4 animate-qs-fade-in"
+          style={{ fontFamily: "'Playfair Display', serif" }}
+        >
+          <div
+            className="italic text-lg sm:text-xl"
+            style={{ color: COLORS.rust }}
+          >
+            with all my heart, happy birthday ♡
+          </div>
+          <div
+            className="mt-1 text-xs sm:text-sm italic"
+            style={{ color: COLORS.brownSoft }}
+          >
+            thank you for being part of this little journey
+          </div>
+        </div>
+      )}
+
       <style>{`
+        @keyframes qs-fade-in {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-qs-fade-in {
+          animation: qs-fade-in 0.6s ease both;
+        }
+
         .letter-scroll-hide {
           scrollbar-width: none; /* Firefox */
           -ms-overflow-style: none; /* old Edge/IE */
